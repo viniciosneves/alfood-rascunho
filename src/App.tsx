@@ -1,16 +1,19 @@
-import React from 'react';
-import Banner from './componentes/Banner';
-import ListaRestaurantes from './componentes/ListaRestaurantes';
-import NavBar from './componentes/NavBar';
-import './index.css'
+import { Routes, Route } from 'react-router-dom';
+import Pratos from './paginas/Admin/Pratos';
+import Restaurantes from './paginas/Admin/Restaurantes';
+import Cadastro from './paginas/Cadastro';
+import Home from './paginas/Home';
+import Login from './paginas/Login';
 
 function App() {
   return (
-    <div className="App">
-      <NavBar />
-      <Banner />
-      <ListaRestaurantes />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/cadastro" element={<Cadastro />} />
+      <Route path="/admin/pratos" element={<Pratos />} />
+      <Route path="/admin/restaurantes" element={<Restaurantes />} />
+    </Routes>
   );
 }
 
