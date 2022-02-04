@@ -1,26 +1,35 @@
 
-import { Box, Button, Card, CardContent, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography, Container, Avatar } from '@mui/material';
 import { Link } from 'react-router-dom';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 const Login = () => {
   return (
-    <Box sx={{ p: 3, display: 'flex', justifyContent: 'center' }}>
-      <Card >
-        <CardContent>
-          <Typography variant="h4">
-            Login
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1 }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h3">
+          Login
+        </Typography>
+        <Box component="form" sx={{ mt: 1 }}>
+          <TextField margin='dense' id="usuario" label="Nome de usuário" type="text" fullWidth />
+          <TextField margin='dense' id="senha" label="Senha" type="password" fullWidth />
+          <Typography sx={{ my: 2 }}>
+            Ainda não possui conta? Clique <Link to='/admin/cadastro'>aqui</Link>
           </Typography>
-          <form>
-            <TextField margin='dense' id="usuario" label="Nome de usuário" type="text" fullWidth />
-            <TextField margin='dense' id="senha" label="Senha" type="password" fullWidth />
-            <Typography>
-              Ainda não possui conta? Clique <Link to='/cadastro'>aqui</Link>
-            </Typography>
-            <Button variant="contained">Salvar</Button>
-          </form>
-        </CardContent>
-      </Card >
-    </Box>
+          <Button fullWidth variant="contained">Salvar</Button>
+        </Box>
+      </Box>
+    </Container>
   )
 }
 

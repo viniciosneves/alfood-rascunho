@@ -1,28 +1,37 @@
 
-import { Box, Button, Card, CardContent, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography, Container, Avatar } from '@mui/material';
 import { Link } from 'react-router-dom';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-const Cadastro = () => {
+const Login = () => {
   return (
-    <Box sx={{ p: 3, display: 'flex', justifyContent: 'center' }}>
-      <Card >
-        <CardContent>
-          <Typography variant="h4">
-            Cadastro
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1 }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h3">
+          Cadastro
+        </Typography>
+        <Box component="form" sx={{ mt: 1 }}>
+          <TextField margin='dense' id="nome" label="Nome" type="text" fullWidth />
+          <TextField margin='dense' id="usuario" label="Nome de usuário" type="text" fullWidth />
+          <TextField margin='dense' id="senha" label="Senha" type="password" fullWidth />
+          <Typography sx={{ my: 2 }}>
+            Já possui conta? Clique <Link to='/admin/login'>aqui</Link>
           </Typography>
-          <form>
-            <TextField margin='dense' id="nome" label="Nome" type="text" fullWidth />
-            <TextField margin='dense' id="usuario" label="Nome de usuário" type="text" fullWidth />
-            <TextField margin='dense' id="senha" label="Senha" type="password" fullWidth />
-            <Typography>
-              Já possui conta? Clique <Link to='/login'>aqui</Link>
-            </Typography>
-            <Button variant="contained">Salvar</Button>
-          </form>
-        </CardContent>
-      </Card >
-    </Box>
+          <Button fullWidth variant="contained">Salvar</Button>
+        </Box>
+      </Box>
+    </Container>
   )
 }
 
-export default Cadastro
+export default Login

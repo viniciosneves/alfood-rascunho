@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,14 +6,32 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IRestaurante from '../../../interfaces/IRestaurante';
-import { Container, IconButton } from '@mui/material';
+import { Grid, IconButton, Link, Typography } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
+import Dashboard from '../Dashboard';
+import { Link as RouterLink } from 'react-router-dom'
 
 const rows: IRestaurante[] = [{ id: 1, nome: 'Alluroni', pratos: [] }];
 
 const Restaurantes = () => {
   return (
-    <Container>
+    <Dashboard>
+      <Grid container>
+        <Grid item xs>
+          <Typography component="h1" variant="h6">
+            Restaurantes
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Link
+            variant="button"
+            component={RouterLink}
+            to="/admin/restaurantes/novo"
+          >
+            Novo
+          </Link>
+        </Grid>
+      </Grid>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -42,7 +59,7 @@ const Restaurantes = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </Container>
+    </Dashboard>
   );
 }
 
