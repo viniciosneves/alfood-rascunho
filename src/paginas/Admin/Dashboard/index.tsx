@@ -6,11 +6,7 @@ const Base: React.FC = ({ children }) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="absolute">
-        <Toolbar
-          sx={{
-            pr: '24px', // keep right padding when drawer closed
-          }}
-        >
+        <Toolbar>
           <Toolbar sx={{ flexWrap: 'wrap' }}>
             <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
               Dashboard
@@ -19,18 +15,18 @@ const Base: React.FC = ({ children }) => {
               <Link
                 variant="button"
                 component={RouterLink}
-                color="text.primary"
+                color="inherit"
                 to="/admin/pratos"
-                sx={{ my: 1, mx: 1.5 }}
+                sx={{ my: 1, mx: 1.5, textDecoration: 'none' }}
               >
                 Pratos
               </Link>
               <Link
                 variant="button"
                 component={RouterLink}
-                color="text.primary"
+                color="inherit"
                 to="/admin/restaurantes"
-                sx={{ my: 1, mx: 1.5 }}
+                sx={{ my: 1, mx: 1.5, textDecoration: 'none' }}
               >
                 Restaurantes
               </Link>
