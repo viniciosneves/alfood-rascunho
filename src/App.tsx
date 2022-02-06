@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import useAutenticador from './hooks/useAutenticador';
 import Pratos from './paginas/Admin/Pratos';
 import FormPrato from './paginas/Admin/Pratos/FormPrato';
 import Restaurantes from './paginas/Admin/Restaurantes';
@@ -9,6 +10,15 @@ import Login from './paginas/Login';
 import VitrineRestaurantes from './paginas/VitrineRestaurantes';
 
 function App() {
+  const refresh = sessionStorage.getItem('refresh_token')
+  const access = sessionStorage.getItem('access_token')
+  const autenticar = useAutenticador()
+  if (refresh && access) {
+    autenticar({
+      refresh,
+      access
+    })
+  }
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -20,7 +30,7 @@ function App() {
       <Route path="/admin/pratos/:id" element={<FormPrato />} />
       <Route path="/admin/restaurantes" element={<Restaurantes />} />
       <Route path="/admin/restaurantes/novo" element={<FormRestaurante />} />
-      <Route path="/admin/restaurantes/:i" element={<FormRestaurante />} />
+      <Route path="/admin/restaurantes/:id" element={<FormRestaurante />} />
     </Routes>
   );
 }

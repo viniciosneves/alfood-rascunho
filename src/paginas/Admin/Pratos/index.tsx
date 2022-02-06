@@ -10,16 +10,31 @@ import { Delete, Edit } from '@mui/icons-material';
 import Dashboard from '../Dashboard';
 import { Grid, IconButton, Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom'
-
-const rows: IPrato[] = [{ id: 1, nome: 'Feijoada Smith', tag: '', descricao: 'A feijoada é um dos pratos típicos mais conhecidos e populares da culinária brasileira.', imagem: '', restaurante: 1 }];
+import { useState, useEffect } from 'react';
+import http from '../../../http';
 
 const Pratos = () => {
+  const [pratos, setPratos] = useState<IPrato[]>()
+  useEffect(() => {
+    http.get<IPrato[]>('/v2/pratos/')
+      .then(resposta => setPratos(resposta.data))
+  }, [])
+  const remover = (prato: IPrato) => {
+    http.delete(`/v2/pratos/${prato.id}/`)
+      .then(() => {
+        if (pratos) {
+          setPratos([
+            ...pratos.filter(x => x.id !== prato.id)
+          ])
+        }
+      })
+  }
   return (
     <Dashboard>
       <Grid container>
         <Grid item xs>
           <Typography component="h1" variant="h6">
-            Restaurantes
+            Pratos
           </Typography>
         </Grid>
         <Grid item>
@@ -42,19 +57,25 @@ const Pratos = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id}>
+            {pratos?.map((prato) => (
+              <TableRow key={prato.id}>
                 <TableCell>
-                  {row.nome}
+                  {prato.nome}
                 </TableCell>
                 <TableCell>
-                  {row.descricao}
+                  {prato.descricao}
                 </TableCell>
                 <TableCell>
-                  <IconButton aria-label="editar">
-                    <Edit />
-                  </IconButton>
-                  <IconButton aria-label="deletar">
+                  <Link
+                    variant="button"
+                    component={RouterLink}
+                    to={`/admin/pratos/${prato.id}`}
+                  >
+                    <IconButton aria-label="editar">
+                      <Edit />
+                    </IconButton>
+                  </Link>
+                  <IconButton aria-label="deletar" onClick={() => remover(prato)}>
                     <Delete />
                   </IconButton>
                 </TableCell>

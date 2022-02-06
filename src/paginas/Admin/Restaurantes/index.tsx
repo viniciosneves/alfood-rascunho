@@ -10,10 +10,25 @@ import { Grid, IconButton, Link, Typography } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import Dashboard from '../Dashboard';
 import { Link as RouterLink } from 'react-router-dom'
-
-const rows: IRestaurante[] = [{ id: 1, nome: 'Alluroni', pratos: [] }];
+import { useState, useEffect } from 'react';
+import http from '../../../http';
 
 const Restaurantes = () => {
+  const [restaurantes, setRestaurantes] = useState<IRestaurante[]>()
+  useEffect(() => {
+    http.get<IRestaurante[]>('/v2/restaurantes/')
+      .then(resposta => setRestaurantes(resposta.data))
+  }, [])
+  const remover = (restaurante:IRestaurante) => {
+    http.delete(`/v2/restaurantes/${restaurante.id}/`)
+      .then(() => {
+        if (restaurantes) {         
+          setRestaurantes([
+            ...restaurantes.filter(x => x.id !== restaurante.id)
+          ])
+        }
+      })
+  }
   return (
     <Dashboard>
       <Grid container>
@@ -41,16 +56,22 @@ const Restaurantes = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id}>
+            {restaurantes?.map((restaurante) => (
+              <TableRow key={restaurante.id}>
                 <TableCell>
-                  {row.nome}
+                  {restaurante.nome}
                 </TableCell>
                 <TableCell>
-                  <IconButton aria-label="editar">
-                    <Edit />
-                  </IconButton>
-                  <IconButton aria-label="deletar">
+                  <Link
+                    variant="button"
+                    component={RouterLink}
+                    to={`/admin/restaurantes/${restaurante.id}`}
+                  >
+                    <IconButton aria-label="editar">
+                      <Edit />
+                    </IconButton>
+                  </Link>
+                  <IconButton aria-label="deletar" onClick={() => remover(restaurante)}>
                     <Delete />
                   </IconButton>
                 </TableCell>

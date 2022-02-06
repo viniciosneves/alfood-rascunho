@@ -2,7 +2,26 @@
     margin-top: 2rem;
     background-color: #f2f6ff;
     padding: 30px;
-    
+
+    .VerMais {
+        border-radius: 28px;
+        color: #000;
+        display: inline-block;
+        background: #FFF;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-weight: 500;
+        border-color: #000;
+        cursor: pointer;
+        text-transform: uppercase;
+        border-style: solid;
+        &:hover {
+            color: #FFF;
+            background: #f2745f;
+            border-color: #f2745f;
+        }
+    }
+
     .Titulo {
         font-size: 28px;
         font-weight: 500;
