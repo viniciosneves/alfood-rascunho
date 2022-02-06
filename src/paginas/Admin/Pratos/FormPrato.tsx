@@ -64,7 +64,6 @@ const FormPrato = () => {
     if (imagem) {
       formData.append('imagem', imagem);
     }
-    debugger
     http.request({
       url,
       method,
