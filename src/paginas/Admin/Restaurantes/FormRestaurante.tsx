@@ -4,7 +4,6 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import http from '../../../http';
 import IRestaurante from '../../../interfaces/IRestaurante';
-import Dashboard from '../Dashboard';
 
 const FormRestaurante = () => {
   const params = useParams();
@@ -33,12 +32,12 @@ const FormRestaurante = () => {
         nome
       }
     }).then(() => {
-      navigate('/admin/restaurantes')
+      navigate('/dashboard/restaurantes')
     })    
   }
 
   return (
-    <Dashboard>
+    <>
       <Box
         sx={{
           display: 'flex',
@@ -62,7 +61,7 @@ const FormRestaurante = () => {
           <Button type='submit' fullWidth variant="contained">Salvar</Button>
         </Box>
       </Box>
-    </Dashboard>
+    </>
   );
 }
 

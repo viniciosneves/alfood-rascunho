@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
+import RotaProtegida from './componentes/RotaProtegida';
 import useAutenticador from './hooks/useAutenticador';
+import Dashboard from './paginas/Admin/Dashboard';
 import Pratos from './paginas/Admin/Pratos';
 import FormPrato from './paginas/Admin/Pratos/FormPrato';
 import Restaurantes from './paginas/Admin/Restaurantes';
@@ -23,14 +25,17 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/restaurantes" element={<VitrineRestaurantes />} />
+
       <Route path="/admin/login" element={<Login />} />
       <Route path="/admin/cadastro" element={<Cadastro />} />
-      <Route path="/admin/pratos" element={<Pratos />} />
-      <Route path="/admin/pratos/novo" element={<FormPrato />} />
-      <Route path="/admin/pratos/:id" element={<FormPrato />} />
-      <Route path="/admin/restaurantes" element={<Restaurantes />} />
-      <Route path="/admin/restaurantes/novo" element={<FormRestaurante />} />
-      <Route path="/admin/restaurantes/:id" element={<FormRestaurante />} />
+      <Route path='/dashboard' element={<RotaProtegida componente={Dashboard}/>}>
+        <Route path="pratos" element={<Pratos />} />
+        <Route path="pratos/novo" element={<FormPrato />} />
+        <Route path="pratos/:id" element={<FormPrato />} />
+        <Route path="restaurantes" element={<Restaurantes />} />
+        <Route path="restaurantes/novo" element={<FormRestaurante />} />
+        <Route path="restaurantes/:id" element={<FormRestaurante />} />
+      </Route>
     </Routes>
   );
 }

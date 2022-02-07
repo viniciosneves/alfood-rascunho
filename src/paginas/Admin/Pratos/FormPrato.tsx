@@ -1,5 +1,4 @@
 import { Box, Typography, TextField, Button, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
-import Dashboard from '../Dashboard';
 import { FileUpload } from '@mui/icons-material';
 import { Method } from 'axios';
 import { useState, useEffect, SyntheticEvent, ChangeEvent } from 'react';
@@ -72,11 +71,11 @@ const FormPrato = () => {
       },
       data: formData
     }).then(() => {
-      navigate('/admin/pratos')
+      navigate('/dashboard/pratos')
     })
   }
   return (
-    <Dashboard>
+    <>
       <Box
         sx={{
           display: 'flex',
@@ -145,7 +144,7 @@ const FormPrato = () => {
           <Button type='submit' fullWidth variant="contained">Salvar</Button>
         </Box>
       </Box>
-    </Dashboard>
+    </>
   );
 }
 

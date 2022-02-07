@@ -1,8 +1,8 @@
 import Paper from '@mui/material/Paper';
 import { AppBar, Box, Button, Container, Grid, Link, Toolbar, Typography } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, Outlet } from 'react-router-dom'
 
-const Base: React.FC = ({ children }) => {
+const Base = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="absolute">
@@ -16,7 +16,7 @@ const Base: React.FC = ({ children }) => {
                 variant="button"
                 component={RouterLink}
                 color="inherit"
-                to="/admin/pratos"
+                to="/dashboard/pratos"
                 sx={{ my: 1, mx: 1.5, textDecoration: 'none' }}
               >
                 Pratos
@@ -25,7 +25,7 @@ const Base: React.FC = ({ children }) => {
                 variant="button"
                 component={RouterLink}
                 color="inherit"
-                to="/admin/restaurantes"
+                to="/dashboard/restaurantes"
                 sx={{ my: 1, mx: 1.5, textDecoration: 'none' }}
               >
                 Restaurantes
@@ -50,7 +50,7 @@ const Base: React.FC = ({ children }) => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                {children}
+                <Outlet />
               </Paper>
             </Grid>
           </Grid>

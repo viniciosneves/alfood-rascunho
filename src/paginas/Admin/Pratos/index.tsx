@@ -7,7 +7,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IPrato from '../../../interfaces/IPrato';
 import { Delete, Edit } from '@mui/icons-material';
-import Dashboard from '../Dashboard';
 import { Grid, IconButton, Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom'
 import { useState, useEffect } from 'react';
@@ -30,7 +29,7 @@ const Pratos = () => {
       })
   }
   return (
-    <Dashboard>
+    <>
       <Grid container>
         <Grid item xs>
           <Typography component="h1" variant="h6">
@@ -41,7 +40,7 @@ const Pratos = () => {
           <Link
             variant="button"
             component={RouterLink}
-            to="/admin/pratos/novo"
+            to="/dashboard/pratos/novo"
           >
             Novo
           </Link>
@@ -69,7 +68,7 @@ const Pratos = () => {
                   <Link
                     variant="button"
                     component={RouterLink}
-                    to={`/admin/pratos/${prato.id}`}
+                    to={`/dashboard/pratos/${prato.id}`}
                   >
                     <IconButton aria-label="editar">
                       <Edit />
@@ -84,7 +83,7 @@ const Pratos = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </Dashboard>
+    </>
   );
 }
 

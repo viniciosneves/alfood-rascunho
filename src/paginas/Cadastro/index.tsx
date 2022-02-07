@@ -18,7 +18,7 @@ const Login = () => {
       email,
       username: nomeUsuario,
       password: senha
-    }).then(() => navigate("/admin/login"))
+    }).then(() => navigate("/dashboard/login"))
     
   }
   return (

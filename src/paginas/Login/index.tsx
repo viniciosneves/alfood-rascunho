@@ -20,7 +20,7 @@ const Login = () => {
       username: nomeUsuario,
       password: senha
     }).then(resposta => {
-      navigate("/admin/restaurantes")
+      navigate("/dashboard/restaurantes")
       autenticar(resposta.data)
     })    
   }

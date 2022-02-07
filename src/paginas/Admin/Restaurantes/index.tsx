@@ -8,7 +8,6 @@ import Paper from '@mui/material/Paper';
 import IRestaurante from '../../../interfaces/IRestaurante';
 import { Grid, IconButton, Link, Typography } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
-import Dashboard from '../Dashboard';
 import { Link as RouterLink } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import http from '../../../http';
@@ -30,7 +29,7 @@ const Restaurantes = () => {
       })
   }
   return (
-    <Dashboard>
+    <>
       <Grid container>
         <Grid item xs>
           <Typography component="h1" variant="h6">
@@ -41,7 +40,7 @@ const Restaurantes = () => {
           <Link
             variant="button"
             component={RouterLink}
-            to="/admin/restaurantes/novo"
+            to="/dashboard/restaurantes/novo"
           >
             Novo
           </Link>
@@ -65,7 +64,7 @@ const Restaurantes = () => {
                   <Link
                     variant="button"
                     component={RouterLink}
-                    to={`/admin/restaurantes/${restaurante.id}`}
+                    to={`/dashboard/restaurantes/${restaurante.id}`}
                   >
                     <IconButton aria-label="editar">
                       <Edit />
@@ -80,7 +79,7 @@ const Restaurantes = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </Dashboard>
+    </>
   );
 }
 
